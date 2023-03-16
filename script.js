@@ -8,7 +8,7 @@ const chuaa = new Audio('image/chuaaa.mp3');
 const tasty = new Audio('image/tasty.m4a');
 
 let score = 0;
-let speed = 5.8;
+let speed = 4.9;
 let health = 5.0;
 let lastPaintTime = 0.0;
 let snakeArr = [{ x: 11, y: 11 }];
@@ -18,8 +18,9 @@ mouse1 = { x: 13, y: 8 };//immovable mouse
 mouse2 = { x: 9, y: 7 };
 mouse3 = { x: 4, y: 4 };
 mouse4 = { x: 10, y: 14 };
+mouse5 = { x: 9, y: 13 };
 
-heart = { x: 0, y: 0 };
+
 
 let topp = false;
 let down = false;
@@ -27,6 +28,14 @@ let left = false;
 let right = false;
 
 let safter = 0;
+
+let aa = 1;
+let bb = 16;
+let a = 2;
+b = 17;
+
+
+
 
 
 //my functions
@@ -36,31 +45,38 @@ function mousedead() {
     mouseElement = document.createElement('div');
     mouseElement.style.gridRowStart = mouse1.y;
     mouseElement.style.gridColumnStart = mouse1.x;
-    mouseElement.classList.add('mouse1');
+    mouseElement.classList.add('mouse');
     board.appendChild(mouseElement);
 
     //display mouse
     mouseElement = document.createElement('div');
     mouseElement.style.gridRowStart = mouse2.y;
     mouseElement.style.gridColumnStart = mouse2.x;
-    mouseElement.classList.add('mouse2');
+    mouseElement.classList.add('mouse');
     board.appendChild(mouseElement);
 
     //display mouse
     mouseElement = document.createElement('div');
     mouseElement.style.gridRowStart = mouse3.y;
     mouseElement.style.gridColumnStart = mouse3.x;
-    mouseElement.classList.add('mouse3');
+    mouseElement.classList.add('mouse');
     board.appendChild(mouseElement);
 
     //display mouse
     mouseElement = document.createElement('div');
     mouseElement.style.gridRowStart = mouse4.y;
     mouseElement.style.gridColumnStart = mouse4.x;
-    mouseElement.classList.add('mouse4');
+    mouseElement.classList.add('mouse');
     board.appendChild(mouseElement);
 
-    if ((snakeArr[0].y === mouse1.y && snakeArr[0].x === mouse1.x) || (snakeArr[0].y === mouse2.y && snakeArr[0].x === mouse2.x) || (snakeArr[0].y === mouse3.y && snakeArr[0].x === mouse3.x) || snakeArr[0].y === mouse4.y && snakeArr[0].x === mouse4.x) {
+    //display mouse
+    mouseElement = document.createElement('div');
+    mouseElement.style.gridRowStart = mouse5.y;
+    mouseElement.style.gridColumnStart = mouse5.x;
+    mouseElement.classList.add('mouse');
+    board.appendChild(mouseElement);
+
+    if ((snakeArr[0].y === mouse1.y && snakeArr[0].x === mouse1.x) || (snakeArr[0].y === mouse2.y && snakeArr[0].x === mouse2.x) || (snakeArr[0].y === mouse3.y && snakeArr[0].x === mouse3.x) || snakeArr[0].y === mouse4.y && snakeArr[0].x === mouse4.x||(snakeArr[0].y === mouse5.y && snakeArr[0].x === mouse5.x)) {
         health--;
         chuaa.play();
         // incerease speed
@@ -126,7 +142,7 @@ function gameEngine() {
         musicSound.pause();
         inputDir = { x: 0, y: 0 };
         alert('Game Over. Press any key to play again');
-        snakeArr = [{ x: 14, y: 14 }];
+        snakeArr = [{ x: 4, y: 17 }];
         musicSound.play();
         score = 0;
         scorebox.innerHTML = "Score: " + score;
@@ -174,46 +190,37 @@ function gameEngine() {
             hiscorebox.innerHTML = "Hi Score: " + hiscoreval;
         }
         //regenfood
-        let aa = 1;
-        let bb = 16;
-        let a = 2;
-        b = 17;
         food = { x: Math.round(a + (bb - aa) * Math.random()), y: Math.round(aa + (bb - aa) * Math.random()) };
-        console.log(`food`);
-        console.log(food)
+
         mouse1 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-        console.log(`mouse1`);
-        console.log(mouse1)
+
         mouse2 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-        console.log(`mouse2`);
-        console.log(mouse2)
+
         mouse3 = { x: Math.round(a + (b - aa) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-        console.log(`mouse3`);
-        console.log(mouse3)
+
         mouse4 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-        console.log(`mouse4`);
-        console.log(mouse4)
+
+        mouse5 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
         //regenmouse
 
         if (food.x === mouse4.x && food.y === mouse4.y) {
-            mouse4 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-            console.log('m4if');console.log(mouse4);
+            mouse4 = { x: (food.x + 2), y: 14 };
         }
 
         if (food.x === mouse3.x && food.y === mouse3.y) {
             mouse3 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-            console.log('m3if');console.log(mouse3);
         }
 
         if (food.x === mouse2.x && food.y === mouse2.y) {
-            mouse2 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-            console.log('m2if');console.log(mouse2);
+            mouse2 = { x: 10, y: (food.y+1) };
         }
 
         if (food.x === mouse1.x && food.y === mouse1.y) {
             mouse1 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-            console.log('m1if');
-            console.log(mouse1);
+        }
+
+        if (food.x === mouse5.x && food.y === mouse5.y) {
+            mouse5 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
         }
 
     }
@@ -267,6 +274,7 @@ function gameEngine() {
         snakeElement.style.rotate = '360deg';
     }
 
+
     // Change healthtext color
     if (health === 3) {
         healthbox.style.color = 'rgb(255, 150, 0)'
@@ -274,6 +282,7 @@ function gameEngine() {
     if (health <= 2) {
         healthbox.style.color = 'rgb(255, 0, 0)';
     }
+
 
     // increase health on eating per 8 doracakes
     healthplus(score);
@@ -317,36 +326,34 @@ window.addEventListener('keydown', e => {
     inputDir = { x: 0, y: 1 } //start the game
     switch (e.key) {
         case "ArrowUp":
-            // console.log("up");
+            console.log("up");
             inputDir.x = 0;
             inputDir.y = -1;
             topp = true;
-            // mouse4 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-            // console.log(inputDir.x+""+inputDir.y)
+            if(score>5){
+                mouse5 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
+            }
             break;
         case "ArrowDown":
-            // console.log("down");
+            console.log("down");
             inputDir.x = 0;
             inputDir.y = 1;
             down = true;
-            // mouse3 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-            // console.log(inputDir.x+""+inputDir.y)
+            if(score>15){
+                mouse3 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
+            }
             break;
         case "ArrowLeft":
-            // console.log("left");
+            console.log("left");
             inputDir.x = -1;
             inputDir.y = 0;
             left = true;
-            // mouse2 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-            // console.log(inputDir.x+""+inputDir.y)
             break;
         case "ArrowRight":
-            // console.log("right");
+            console.log("right");
             inputDir.x = 1;
             inputDir.y = 0;
             right = true;
-            // mouse1 = { x: Math.round(a + (b - a) * Math.random()), y: Math.round(a + (b - a) * Math.random()) };
-            // console.log(inputDir.x+""+inputDir.y)
             break;
     }
     musicSound.play();

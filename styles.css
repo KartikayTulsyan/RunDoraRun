@@ -72,22 +72,11 @@ body {
     background-repeat: no-repeat;
 }
 
-.mouse1 {
+.mouse {
     background: url(image/PngItem_148881.png);
     background-repeat: no-repeat;
 }
-.mouse2 {
-    background: url(image/PngItem_148881.png);
-    background-repeat: no-repeat;
-}
-.mouse3 {
-    background: url(image/PngItem_148881.png);
-    background-repeat: no-repeat;
-}
-.mouse4 {
-    background: url(image/PngItem_148881.png);
-    background-repeat: no-repeat;
-}
+
 
 /* score */
 
